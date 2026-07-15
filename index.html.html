@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Packhouse — UK Shopify Fulfilment for Growing Brands</title>
+<meta name="description" content="UK fulfilment specialist for growing Shopify brands. We store your stock, process your Shopify orders automatically, dispatch same day and keep your customers happy.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#15171B;            /* printed label ink */
+    --paper:#FBFAF6;          /* label white */
+    --kraft:#EFE6D3;          /* cardboard */
+    --kraft-deep:#D9C9A8;
+    --dispatch:#F04E12;       /* courier orange */
+    --shopify:#5E8E3E;        /* connection green */
+    --line:#15171B;
+    --muted:#5C5F66;
+    --radius:4px;
+    --max:1140px;
+    --display:'Barlow Condensed',sans-serif;
+    --body:'Barlow',sans-serif;
+    --mono:'IBM Plex Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.55;font-size:17px;-webkit-font-smoothing:antialiased}
+  img{max-width:100%}
+  a{color:inherit}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+  ::selection{background:var(--dispatch);color:#fff}
+  :focus-visible{outline:3px solid var(--dispatch);outline-offset:2px}
+
+  /* ---------- type ---------- */
+  h1,h2,h3,.disp{font-family:var(--display);text-transform:uppercase;letter-spacing:.01em;line-height:.95;font-weight:700}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:inline-flex;align-items:center;gap:8px}
+  .eyebrow::before{content:"";width:22px;height:2px;background:var(--dispatch);display:inline-block}
+  .mono{font-family:var(--mono)}
+
+  /* ---------- nav ---------- */
+  header{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:2px solid var(--ink)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{display:flex;align-items:center;text-decoration:none;color:var(--ink)}
+  .logo-svg{height:24px;width:226px;color:var(--ink);display:block}
+  .logo-svg.small{height:20px;width:189px}
+  .logo:hover .logo-svg{color:var(--dispatch)}
+  .navlinks{display:flex;gap:26px;align-items:center;font-size:15px;font-weight:500}
+  .navlinks a{text-decoration:none;opacity:.85}
+  .navlinks a:hover{opacity:1;color:var(--dispatch)}
+  .btn{display:inline-block;font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:18px;padding:12px 22px;border:2px solid var(--ink);border-radius:var(--radius);text-decoration:none;background:var(--ink);color:var(--paper);box-shadow:4px 4px 0 var(--kraft-deep);transition:transform .12s ease,box-shadow .12s ease}
+  .btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--kraft-deep)}
+  .btn.orange{background:var(--dispatch);border-color:var(--dispatch)}
+  .btn.ghost{background:transparent;color:var(--ink)}
+  .nav .btn{padding:8px 16px;font-size:16px;box-shadow:3px 3px 0 var(--kraft-deep)}
+
+  /* ---------- hero ---------- */
+  .hero{padding:72px 0 64px;background:
+        linear-gradient(var(--paper) 0 0) padding-box,
+        var(--paper);position:relative;overflow:hidden}
+  .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .hero h1{font-size:clamp(48px,6.4vw,84px);margin:18px 0 20px}
+  .hero h1 em{font-style:normal;color:var(--dispatch)}
+  .hero p.lead{font-size:20px;max-width:34em;color:#2B2E33}
+  .heritage-line{margin-top:18px;font-size:16px;color:#2B2E33;border-left:4px solid var(--dispatch);padding:8px 0 8px 16px;background:var(--kraft);border-radius:0 4px 4px 0;max-width:34em}
+  .heritage-line strong{font-family:var(--display);text-transform:uppercase;font-size:19px;letter-spacing:.02em;display:block;margin-bottom:2px}
+  .hero .ctas{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap}
+  .hero .small{margin-top:18px;font-family:var(--mono);font-size:13px;color:var(--muted)}
+
+  /* the shipping label — signature element */
+  .label-card{background:#fff;border:2px solid var(--ink);border-radius:6px;box-shadow:8px 8px 0 var(--kraft-deep);position:relative;font-size:14px}
+  .label-card::before,.label-card::after{content:"";position:absolute;left:-14px;width:28px;height:28px;background:var(--paper);border:2px solid var(--ink);border-radius:50%}
+  .label-card::before{top:44%}
+  .label-card::after{display:none}
+  .label-top{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:2px dashed var(--ink)}
+  .label-top .svc{font-family:var(--display);font-weight:700;font-size:22px;text-transform:uppercase}
+  .stamp{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:15px;color:var(--dispatch);border:2px solid var(--dispatch);border-radius:4px;padding:3px 9px;transform:rotate(-4deg);letter-spacing:.06em}
+  .label-mid{padding:16px 18px;display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;border-bottom:2px dashed var(--ink)}
+  .label-mid .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .label-mid .v{font-weight:600;font-size:14.5px}
+  .track{padding:16px 18px 8px}
+  .track .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+  .step{display:flex;gap:12px;align-items:flex-start;position:relative;padding-bottom:18px}
+  .step:last-child{padding-bottom:6px}
+  .step::before{content:"";position:absolute;left:7px;top:18px;bottom:0;width:2px;background:var(--ink);opacity:.18}
+  .step:last-child::before{display:none}
+  .dot{width:16px;height:16px;border-radius:50%;border:2px solid var(--ink);background:#fff;flex-shrink:0;margin-top:2px;position:relative;z-index:1}
+  .step.done .dot{background:var(--ink)}
+  .step.live .dot{background:var(--dispatch);border-color:var(--dispatch)}
+  .step .t{font-weight:600;font-size:14.5px}
+  .step .m{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+  .step.live .t{color:var(--dispatch)}
+  .label-foot{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;border-top:2px dashed var(--ink)}
+  .bigbar{height:34px;flex:1;max-width:220px;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 4px,var(--ink) 4px 5px,transparent 5px 9px,var(--ink) 9px 12px,transparent 12px 14px,var(--ink) 14px 15px,transparent 15px 17px)}
+  .label-foot .id{font-family:var(--mono);font-size:12px;letter-spacing:.08em}
+
+  @media (prefers-reduced-motion:no-preference){
+    .step{opacity:0;transform:translateY(6px);animation:stepIn .5s ease forwards}
+    .step:nth-child(2){animation-delay:.5s}.step:nth-child(3){animation-delay:1s}
+    .step:nth-child(4){animation-delay:1.5s}.step:nth-child(5){animation-delay:2s}
+    @keyframes stepIn{to{opacity:1;transform:none}}
+    .step.live .dot{animation:pulse 1.8s ease-in-out 2.2s infinite}
+    @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(240,78,18,.45)}50%{box-shadow:0 0 0 7px rgba(240,78,18,0)}}
+  }
+
+  /* ---------- strip ---------- */
+  .strip{background:var(--ink);color:var(--paper);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+  .strip .wrap{display:flex;gap:0;flex-wrap:wrap}
+  .strip span{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;padding:12px 22px;display:flex;align-items:center;gap:10px}
+  .strip span::before{content:"■";color:var(--dispatch);font-size:9px}
+
+  /* ---------- sections ---------- */
+  section{padding:84px 0}
+  .sec-head{max-width:640px;margin-bottom:44px}
+  .sec-head h2{font-size:clamp(36px,4.4vw,56px);margin-top:14px}
+  .sec-head p{margin-top:14px;color:#2B2E33;font-size:18px}
+
+  /* pain */
+  .pain{background:var(--kraft);border-bottom:2px solid var(--ink)}
+  .pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .pain-card{background:var(--paper);border:2px solid var(--ink);border-radius:var(--radius);padding:22px;box-shadow:5px 5px 0 var(--kraft-deep)}
+  .pain-card .time{font-family:var(--mono);font-size:12px;color:var(--dispatch);letter-spacing:.1em}
+  .pain-card h3{font-size:24px;margin:8px 0 8px}
+  .pain-card p{font-size:15.5px;color:#2B2E33}
+
+  /* how it works */
+  .how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:2px solid var(--ink);border-radius:6px;overflow:hidden;background:#fff}
+  .how-card{padding:26px 22px;border-right:2px dashed var(--ink);position:relative}
+  .how-card:last-child{border-right:none}
+  .how-card .tag{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--paper);background:var(--ink);display:inline-block;padding:3px 8px;border-radius:3px}
+  .how-card:nth-child(3) .tag{background:var(--dispatch)}
+  .how-card h3{font-size:24px;margin:14px 0 10px}
+  .how-card p{font-size:15px;color:#2B2E33}
+
+  /* shopify */
+  .shopify-panel{border:2px solid var(--ink);border-radius:6px;background:#fff;display:grid;grid-template-columns:1.1fr .9fr;overflow:hidden;box-shadow:8px 8px 0 var(--kraft-deep)}
+  .shopify-left{padding:40px}
+  .shopify-left h2{font-size:clamp(32px,3.6vw,46px)}
+  .live-pill{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:2px solid var(--shopify);color:var(--shopify);border-radius:99px;padding:5px 12px;margin-bottom:16px}
+  .live-pill i{width:8px;height:8px;border-radius:50%;background:var(--shopify);display:inline-block}
+  @media (prefers-reduced-motion:no-preference){.live-pill i{animation:pulse2 2s infinite}@keyframes pulse2{0%,100%{opacity:1}50%{opacity:.35}}}
+  .checks{margin-top:18px;display:grid;gap:12px}
+  .checks li{list-style:none;display:flex;gap:12px;align-items:flex-start;font-size:16px}
+  .checks li::before{content:"✓";font-family:var(--mono);font-weight:600;color:var(--shopify);border:2px solid var(--shopify);border-radius:3px;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;margin-top:1px}
+  .shopify-right{background:var(--ink);color:var(--paper);padding:32px;font-family:var(--mono);font-size:13px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+  .logline{display:flex;gap:12px;padding:9px 12px;border:1px solid rgba(251,250,246,.18);border-radius:4px}
+  .logline .ts{color:rgba(251,250,246,.45)}
+  .logline .ok{color:#8FCB6B}
+  .logline .hot{color:#FF7A47}
+
+  /* promises */
+  .promise-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .promise{border:2px solid var(--ink);border-radius:var(--radius);padding:24px;background:#fff}
+  .promise h3{font-size:23px;margin-bottom:8px}
+  .promise p{font-size:15.5px;color:#2B2E33}
+  .promise .mono{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dispatch);margin-bottom:10px}
+
+  /* pricing */
+  .pricing{background:var(--kraft);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+  .price-table{width:100%;border-collapse:collapse;background:#fff;border:2px solid var(--ink);border-radius:6px;overflow:hidden;box-shadow:8px 8px 0 var(--kraft-deep)}
+  .price-table th{font-family:var(--display);text-transform:uppercase;font-size:19px;text-align:left;padding:16px 20px;background:var(--ink);color:var(--paper);letter-spacing:.03em}
+  .price-table td{padding:15px 20px;border-top:2px dashed rgba(21,23,27,.25);font-size:16px;vertical-align:top}
+  .price-table td:last-child{font-family:var(--mono);font-weight:600;white-space:nowrap}
+  .price-table .inc{color:var(--shopify)}
+  .price-note{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-top:16px;max-width:56em}
+  .quote-cta{display:flex;gap:28px;align-items:center;margin-top:24px;flex-wrap:wrap}
+  .quote-cta .price-note{flex:1;min-width:260px}
+  .quote-cta .btn{flex-shrink:0}
+
+  /* story */
+  .story .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .story blockquote{font-family:var(--display);font-weight:600;text-transform:none;font-size:clamp(26px,3vw,36px);line-height:1.15;border-left:6px solid var(--dispatch);padding-left:22px}
+  .story .who{font-family:var(--mono);font-size:13px;color:var(--muted);margin-top:16px}
+  .story p{margin-bottom:14px;color:#2B2E33}
+  .era-strip{margin-top:28px;border:2px solid var(--ink);border-radius:6px;background:#fff;overflow:hidden;box-shadow:6px 6px 0 var(--kraft-deep)}
+  .era{display:flex;gap:16px;align-items:baseline;padding:13px 16px;border-bottom:2px dashed rgba(21,23,27,.3)}
+  .era:last-child{border-bottom:none}
+  .era-y{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:19px;min-width:82px;flex-shrink:0}
+  .era-t{font-size:14.5px;color:#2B2E33}
+  .live-era{background:var(--kraft)}
+  .live-era .era-y{color:var(--dispatch)}
+
+  /* fit */
+  .fit-band{border:2px solid var(--ink);border-radius:6px;background:#fff;padding:32px;display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center;box-shadow:8px 8px 0 var(--kraft-deep)}
+  .fit-num{font-family:var(--display);font-weight:700;font-size:clamp(52px,6vw,84px);line-height:.9;color:var(--dispatch);text-transform:uppercase}
+  .fit-num small{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--muted);margin-top:8px;font-weight:400}
+  .chips{display:flex;flex-wrap:wrap;gap:10px}
+  .chip{font-family:var(--mono);font-size:13px;border:2px solid var(--ink);border-radius:99px;padding:7px 14px;background:var(--paper)}
+
+  /* audit / form */
+  .audit{background:var(--ink);color:var(--paper)}
+  .audit .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+  .audit h2{font-size:clamp(38px,4.6vw,58px);color:var(--paper)}
+  .audit h2 em{font-style:normal;color:var(--dispatch)}
+  .audit p{color:rgba(251,250,246,.8);margin-top:16px;font-size:17px}
+  .audit ul{margin-top:18px;display:grid;gap:10px}
+  .audit ul li{list-style:none;display:flex;gap:10px;font-size:15.5px;color:rgba(251,250,246,.85)}
+  .audit ul li::before{content:"→";color:var(--dispatch);font-family:var(--mono)}
+  form{background:var(--paper);color:var(--ink);border:2px solid var(--ink);border-radius:6px;padding:28px;box-shadow:8px 8px 0 rgba(240,78,18,.9)}
+  form h3{font-size:24px;margin-bottom:16px}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .field input,.field select,.field textarea{width:100%;font-family:var(--body);font-size:16px;padding:11px 12px;border:2px solid var(--ink);border-radius:4px;background:#fff}
+  .field textarea{min-height:84px;resize:vertical}
+  form .btn{width:100%;text-align:center;cursor:pointer;font-size:19px}
+  .form-note{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:12px}
+  .thanks{display:none;text-align:center;padding:36px 10px}
+  .thanks .stamp{display:inline-block;font-size:20px;margin-bottom:14px}
+
+  /* footer */
+  footer{border-top:2px solid var(--ink);padding:36px 0;background:var(--paper)}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  footer .fine{font-family:var(--mono);font-size:12px;color:var(--muted)}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:980px){
+    .hero .wrap,.shopify-panel,.story .wrap,.audit .wrap{grid-template-columns:1fr}
+    .how-grid{grid-template-columns:1fr 1fr}
+    .how-card:nth-child(2){border-right:none}
+    .how-card:nth-child(1),.how-card:nth-child(2){border-bottom:2px dashed var(--ink)}
+    .pain-grid,.promise-grid{grid-template-columns:1fr 1fr}
+    .navlinks a:not(.btn){display:none}
+    .fit-band{grid-template-columns:1fr}
+  }
+  @media (max-width:600px){
+    .pain-grid,.promise-grid,.how-grid{grid-template-columns:1fr}
+    .how-card{border-right:none!important;border-bottom:2px dashed var(--ink)}
+    .how-card:last-child{border-bottom:none}
+    section{padding:60px 0}
+    .price-table th,.price-table td{padding:12px 12px;font-size:14.5px}
+  }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="pk-logo" viewBox="0 0 434 46"><rect x="0.0" y="1" width="6.0" height="44.35875000000001" fill="#15171B"/><rect x="9.0" y="1" width="4.0" height="44.35875000000001" fill="#15171B"/><rect x="17.0" y="1" width="4.0" height="44.35875000000001" fill="#15171B"/><rect x="25.0" y="1" width="6.0" height="44.35875000000001" fill="#15171B"/><rect x="33.0" y="1" width="1.5" height="44.35875000000001" fill="#15171B"/><rect x="36.5" y="1" width="2.5" height="44.35875000000001" fill="#15171B"/><rect x="43.0" y="1" width="6.0" height="44.35875000000001" fill="#15171B"/><rect x="51.0" y="1" width="2.5" height="44.35875000000001" fill="#15171B"/><rect x="57.5" y="1" width="1.5" height="44.35875000000001" fill="#15171B"/><rect x="63.0" y="1" width="1.5" height="44.35875000000001" fill="#15171B"/><rect x="67.5" y="1" width="1.5" height="44.35875000000001" fill="#15171B"/>
+  <rect x="71" y="1" width="7" height="44" fill="#F04E12"/>
+  <g transform="translate(94,2)"><path d="M4.62,0.74 L20.34,0.74 Q27.37,0.74 31.12,4.20 Q34.86,7.66 34.86,14.05 Q34.86,20.48 31.12,23.94 Q27.37,27.40 20.34,27.40 L14.11,27.40 L14.11,41.56 L4.62,41.56 L4.62,0.74 Z M14.11,8.37 L14.11,19.77 L19.33,19.77 Q22.09,19.77 23.60,18.28 Q25.10,16.79 25.10,14.05 Q25.10,11.32 23.60,9.84 Q22.09,8.37 19.33,8.37 L14.11,8.37 Z M58.74,34.13 L43.91,34.13 L41.57,41.56 L32.05,41.56 L45.66,0.74 L56.96,0.74 L70.58,41.56 L61.04,41.56 L58.74,34.13 Z M46.27,26.55 L56.33,26.55 L51.33,10.31 L46.27,26.55 Z M104.56,39.32 Q101.94,40.83 99.11,41.59 Q96.29,42.36 93.22,42.36 Q84.04,42.36 78.67,36.65 Q73.32,30.95 73.32,21.19 Q73.32,11.40 78.67,5.71 Q84.04,0.00 93.22,0.00 Q96.29,0.00 99.11,0.77 Q101.94,1.53 104.56,3.04 L104.56,11.48 Q101.91,9.49 99.36,8.56 Q96.80,7.63 93.98,7.63 Q88.90,7.63 86.00,11.24 Q83.10,14.85 83.10,21.19 Q83.10,27.51 86.00,31.12 Q88.90,34.73 93.98,34.73 Q96.80,34.73 99.36,33.80 Q101.91,32.87 104.56,30.87 L104.56,39.32 Z M112.39,0.74 L121.88,0.74 L121.88,15.64 L135.52,0.74 L146.54,0.74 L128.82,20.07 L148.35,41.56 L136.47,41.56 L121.88,25.48 L121.88,41.56 L112.39,41.56 L112.39,0.74 Z M151.43,0.74 L160.93,0.74 L160.93,16.29 L174.89,16.29 L174.89,0.74 L184.36,0.74 L184.36,41.56 L174.89,41.56 L174.89,24.26 L160.93,24.26 L160.93,41.56 L151.43,41.56 L151.43,0.74 Z M210.39,7.63 Q206.06,7.63 203.67,11.18 Q201.28,14.74 201.28,21.19 Q201.28,27.62 203.67,31.18 Q206.06,34.73 210.39,34.73 Q214.74,34.73 217.12,31.18 Q219.52,27.62 219.52,21.19 Q219.52,14.74 217.12,11.18 Q214.74,7.63 210.39,7.63 Z M210.39,0.00 Q219.24,0.00 224.26,5.64 Q229.28,11.26 229.28,21.19 Q229.28,31.09 224.26,36.72 Q219.24,42.36 210.39,42.36 Q201.56,42.36 196.53,36.72 Q191.50,31.09 191.50,21.19 Q191.50,11.26 196.53,5.64 Q201.56,0.00 210.39,0.00 Z M236.42,0.74 L245.91,0.74 L245.91,25.21 Q245.91,30.27 247.40,32.45 Q248.89,34.62 252.25,34.62 Q255.64,34.62 257.13,32.45 Q258.62,30.27 258.62,25.21 L258.62,0.74 L268.11,0.74 L268.11,25.21 Q268.11,33.88 264.18,38.12 Q260.26,42.36 252.25,42.36 Q244.24,42.36 240.33,38.12 Q236.42,33.88 236.42,25.21 L236.42,0.74 Z M302.89,2.02 L302.89,10.67 Q299.88,9.16 296.99,8.40 Q294.11,7.63 291.54,7.63 Q288.16,7.63 286.53,8.67 Q284.90,9.70 284.90,11.89 Q284.90,13.54 285.99,14.46 Q287.09,15.37 289.98,16.02 L294.00,16.92 Q300.16,18.30 302.72,21.09 Q305.30,23.87 305.30,29.02 Q305.30,35.76 301.70,39.06 Q298.10,42.36 290.69,42.36 Q287.19,42.36 283.68,41.62 Q280.17,40.88 276.64,39.43 L276.64,30.55 Q280.17,32.62 283.45,33.68 Q286.73,34.73 289.79,34.73 Q292.88,34.73 294.53,33.58 Q296.19,32.43 296.19,30.29 Q296.19,28.39 295.07,27.34 Q293.95,26.30 290.59,25.48 L286.92,24.58 Q281.43,23.27 278.87,20.40 Q276.32,17.53 276.32,12.66 Q276.32,6.56 279.87,3.28 Q283.42,0.00 290.04,0.00 Q293.07,0.00 296.27,0.51 Q299.47,1.02 302.89,2.02 Z M313.61,0.74 L339.18,0.74 L339.18,8.70 L323.10,8.70 L323.10,16.29 L338.22,16.29 L338.22,24.26 L323.10,24.26 L323.10,33.61 L339.73,33.61 L339.73,41.56 L313.61,41.56 L313.61,0.74 Z" fill="currentColor"/></g></symbol>
+</svg>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="Packhouse — home"><svg class="logo-svg"><use href="#pk-logo"/></svg></a>
+    <nav class="navlinks" aria-label="Main">
+      <a href="#how">How it works</a>
+      <a href="#shopify">Shopify</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#story">About</a>
+      <a class="btn orange" href="#audit">Free audit</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">UK Shopify fulfilment · Dispatching since the mid-1990s</span>
+        <h1>Stop spending your evenings <em>packing orders.</em></h1>
+        <p class="lead">We'll store your stock, process your Shopify orders automatically, ship the same day — and keep your customers happy. Built for growing UK brands that have outgrown the spare room but don't want a faceless mega-3PL.</p>
+        <p class="heritage-line"><strong>Nearly 30 years of mail order experience.</strong> Powered by Shopify since 2023 — from magazine ads and phone orders to same-day automated dispatch.</p>
+        <div class="ctas">
+          <a class="btn orange" href="#audit">Book a free fulfilment audit</a>
+          <a class="btn ghost" href="#pricing">See pricing</a>
+        </div>
+        <p class="small">No minimum volumes · No call centres · Real people, direct line</p>
+      </div>
+
+      <!-- signature: live shipping label -->
+      <div class="label-card" aria-label="Example order moving through our warehouse">
+        <div class="label-top">
+          <span class="svc">Tracked 24 · UK</span>
+          <span class="stamp">Same-day dispatch</span>
+        </div>
+        <div class="label-mid">
+          <div><div class="k">From</div><div class="v">Packhouse Fulfilment<br>Unit 12, UK</div></div>
+          <div><div class="k">To</div><div class="v">Your customer<br>Anywhere, UK</div></div>
+          <div><div class="k">Channel</div><div class="v">Shopify · auto-import</div></div>
+          <div><div class="k">Weight</div><div class="v">0.6 kg · 1 item</div></div>
+        </div>
+        <div class="track">
+          <div class="k">Order journey — today</div>
+          <div class="step done"><span class="dot"></span><div><div class="t">Order placed on your store</div><div class="m">09:14 · imported automatically</div></div></div>
+          <div class="step done"><span class="dot"></span><div><div class="t">Picked</div><div class="m">10:02 · barcode-scanned</div></div></div>
+          <div class="step done"><span class="dot"></span><div><div class="t">Packed</div><div class="m">10:07 · your branded packaging</div></div></div>
+          <div class="step live"><span class="dot"></span><div><div class="t">Dispatched — same day</div><div class="m">15:38 · tracking synced to Shopify</div></div></div>
+        </div>
+        <div class="label-foot">
+          <span class="bigbar" aria-hidden="true"></span>
+          <span class="id">PKH-2026-000481</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRIP -->
+  <div class="strip" role="presentation">
+    <div class="wrap">
+      <span>Same-day dispatch</span>
+      <span>Direct Shopify integration</span>
+      <span>Dedicated account manager</span>
+      <span>Low minimums</span>
+      <span>UK warehouse</span>
+      <span>Shipping since the mid-90s</span>
+    </div>
+  </div>
+
+  <!-- PAIN -->
+  <section class="pain">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Sound familiar?</span>
+        <h2>Your brand is growing. Your evenings aren't.</h2>
+        <p>Somewhere between 10 and 300 orders a day, fulfilment quietly becomes your whole job. You didn't start a brand to run a warehouse.</p>
+      </div>
+      <div class="pain-grid">
+        <div class="pain-card">
+          <div class="time">19:45, Tuesday</div>
+          <h3>Still packing</h3>
+          <p>The kitchen table is a packing bench again. Every sale is good news that costs you another twenty minutes.</p>
+        </div>
+        <div class="pain-card">
+          <div class="time">08:10, launch day</div>
+          <h3>Too big to DIY</h3>
+          <p>A good promo now means a bad week. You can't take a holiday, get ill, or focus on marketing without dispatch slipping.</p>
+        </div>
+        <div class="pain-card">
+          <div class="time">Week 3, no reply</div>
+          <h3>Too small for big 3PLs</h3>
+          <p>The big fulfilment houses want huge minimums and answer emails in days. You want a person, not a ticket number.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">How it works</span>
+        <h2>From your store to their door — without you touching a box</h2>
+      </div>
+      <div class="how-grid">
+        <div class="how-card">
+          <span class="tag">Step 1 · Once</span>
+          <h3>Send us your stock</h3>
+          <p>Book your stock in by pallet or carton. We receive, count, barcode and shelve it — and you can see your inventory from day one.</p>
+        </div>
+        <div class="how-card">
+          <span class="tag">Step 2 · ~10 mins</span>
+          <h3>Connect Shopify</h3>
+          <p>We plug directly into your store. Orders flow to our warehouse automatically — no exports, no spreadsheets, no manual anything.</p>
+        </div>
+        <div class="how-card">
+          <span class="tag">Step 3 · Every day</span>
+          <h3>We pick, pack, dispatch</h3>
+          <p>Orders placed before our daily cut-off leave the same day with Royal Mail, DPD, Evri or FedEx — in your packaging, packed with care.</p>
+        </div>
+        <div class="how-card">
+          <span class="tag">Step 4 · Automatic</span>
+          <h3>Customers get tracking</h3>
+          <p>Tracking numbers sync straight back to Shopify and out to your customers. Stock levels update in real time as orders ship.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOPIFY -->
+  <section id="shopify" style="padding-top:0">
+    <div class="wrap">
+      <div class="shopify-panel">
+        <div class="shopify-left">
+          <span class="live-pill"><i></i>Connected to Shopify</span>
+          <h2>Built around Shopify, because we run on it too</h2>
+          <ul class="checks">
+            <li>Orders import automatically the moment they're placed</li>
+            <li>Tracking numbers sync back to Shopify and your customers</li>
+            <li>Inventory levels update in real time — no overselling</li>
+            <li>Returns processed, inspected and restocked</li>
+            <li>Works with your existing apps, bundles and flows</li>
+          </ul>
+        </div>
+        <div class="shopify-right" aria-label="Example of the automatic order feed">
+          <div class="logline"><span class="ts">09:14:02</span><span class="ok">order #4182 imported from Shopify</span></div>
+          <div class="logline"><span class="ts">09:14:03</span><span>stock reserved · SKU CNDL-LAV-01</span></div>
+          <div class="logline"><span class="ts">10:07:41</span><span>packed · branded box + insert</span></div>
+          <div class="logline"><span class="ts">15:38:19</span><span class="hot">dispatched · DPD next day</span></div>
+          <div class="logline"><span class="ts">15:38:20</span><span class="ok">tracking synced → customer notified</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMISES -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">What you get</span>
+        <h2>30 years of dispatch know-how. Small-team service.</h2>
+        <p>We've been picking and packing since before Shopify existed — and we've kept the thing most 3PLs lose as they grow: actually caring about every parcel.</p>
+      </div>
+      <div class="promise-grid">
+        <div class="promise"><span class="mono">Service</span><h3>A named account manager</h3><p>One person who knows your products, your packaging and your peak days. Call or message them directly — no call centres, no ticket queues.</p></div>
+        <div class="promise"><span class="mono">Speed</span><h3>Same-day dispatch</h3><p>Orders in before the daily cut-off ship the same day, every working day. Fast delivery is the cheapest marketing you'll ever buy.</p></div>
+        <div class="promise"><span class="mono">Flexibility</span><h3>No scary minimums</h3><p>Start with a few shelves, scale to pallet racking. Grow at your pace — we're built for 10 to 300+ orders a day.</p></div>
+        <div class="promise"><span class="mono">Brand</span><h3>Your unboxing, protected</h3><p>Branded boxes, tissue, inserts, handwritten-feel touches — we pack it the way you would. Kitting and bundles included.</p></div>
+        <div class="promise"><span class="mono">Couriers</span><h3>The right courier per order</h3><p>Royal Mail, DPD, Evri, FedEx and more — matched to size, speed and cost, with our negotiated rates working for you.</p></div>
+        <div class="promise"><span class="mono">Trust</span><h3>Three decades of dispatch</h3><p>We've shipped through every era of mail order since the mid-1990s. Secure, insured UK warehouse, barcode-level accuracy, and full visibility of your stock.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing" id="pricing">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Pricing</span>
+        <h2>Simple pricing. Four line items. No mystery quotes.</h2>
+        <p>You pay for exactly four things — nothing hidden, nothing padded. Because every brand's products and order profile are different, we price each one properly rather than publishing one-size-fits-nobody rates.</p>
+      </div>
+      <table class="price-table">
+        <thead><tr><th>What you pay for</th><th>What's included</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Goods in</strong></td><td>Receiving, counting, barcoding and shelving your stock — priced per pallet or carton</td></tr>
+          <tr><td><strong>Storage</strong></td><td>Secure, insured UK warehousing, billed weekly per pallet or shelf — only pay for the space you use</td></tr>
+          <tr><td><strong>Pick &amp; pack</strong></td><td>A simple per-order rate for the first item, plus a small per-item rate for extras in the same order</td></tr>
+          <tr><td><strong>Shipping</strong></td><td>Royal Mail, DPD, Evri, FedEx at our negotiated rates — often cheaper than you're paying now</td></tr>
+          <tr><td><strong>Standard packaging</strong></td><td class="inc">Included — boxes, mailers and void fill at no extra charge</td></tr>
+        </tbody>
+      </table>
+      <div class="quote-cta">
+        <p class="price-note" style="margin-top:0">Send us your Shopify store URL and rough daily order volume, and you'll have a tailored quote within one working day — on a single page, in plain English, with no obligation.</p>
+        <a class="btn orange" href="#audit">Get your tailored quote</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="story" id="story">
+    <div class="wrap">
+      <div>
+        <blockquote>"We've been shipping mail order since the mid-1990s — back when it was magazine ads, phone orders and a lot of paperwork. Shopify just made us faster."</blockquote>
+        <div class="who">— The team behind Packhouse · All Terrain Cycles Limited</div>
+        <div class="era-strip" aria-label="Our fulfilment timeline">
+          <div class="era"><span class="era-y">Mid-90s</span><span class="era-t">Mail order begins — magazine ads, phone orders, carbon-copy paperwork</span></div>
+          <div class="era"><span class="era-y">2000s</span><span class="era-t">Online ordering takes over; the warehouse and processes grow with it</span></div>
+          <div class="era"><span class="era-y">2023</span><span class="era-t">Moved to Shopify — automated orders, synced tracking, live inventory</span></div>
+          <div class="era live-era"><span class="era-y">Today</span><span class="era-t">Opening our fulfilment operation to other growing Shopify brands</span></div>
+        </div>
+      </div>
+      <div>
+        <p>Packhouse isn't a startup guessing at logistics. Behind it is <strong>All Terrain Cycles Limited</strong> — a real UK retailer that has been picking, packing and dispatching mail order for nearly 30 years.</p>
+        <p>We started in the mid-1990s, when "ecommerce" meant an ad in a magazine, a ringing phone, and order forms filled in by hand. We've dispatched through every era since — catalogue, fax, early web, and for the last three-plus years, Shopify. Our own store runs on it every single day.</p>
+        <p>That history matters. We already know what a launch-day spike feels like, why the unboxing is part of your brand, what a "where's my order?" email costs you — and how much trust it takes to hand someone your entire inventory. Bikes and parts taught us to ship everything from a tiny inner tube to big, awkward boxes, accurately and fast.</p>
+        <p>We're not the biggest fulfilment house in the UK. We're the one that's been doing this the longest way before it was fashionable — and we treat your orders like our own, because ours go out the same door.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIT -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Who it's for</span>
+        <h2>A good fit if this sounds like you</h2>
+      </div>
+      <div class="fit-band">
+        <div class="fit-num">10–300<small>orders / day · UK · Shopify</small></div>
+        <div>
+          <p style="margin-bottom:14px;color:#2B2E33">Owner-run UK brands with steady sales and real momentum — shipping products like:</p>
+          <div class="chips">
+            <span class="chip">Supplements</span><span class="chip">Cosmetics &amp; beauty</span><span class="chip">Clothing</span><span class="chip">Pet products</span><span class="chip">Homewares</span><span class="chip">Gifts</span><span class="chip">Coffee</span><span class="chip">Candles</span><span class="chip">Sports nutrition</span><span class="chip">Baby products</span><span class="chip">Hobby &amp; craft</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUDIT / CONTACT -->
+  <section class="audit" id="audit">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow" style="color:rgba(251,250,246,.7)">Free fulfilment audit</span>
+        <h2>Find out what outsourcing would <em>actually</em> cost you</h2>
+        <p>A 30-minute, no-pressure review of your current setup. Even if you don't switch, you'll leave knowing exactly where your money and evenings are going.</p>
+        <ul>
+          <li>Your true cost per order today (most founders underestimate it)</li>
+          <li>Shipping rates — where you're overpaying couriers</li>
+          <li>Packaging and pick-flow quick wins</li>
+          <li>An honest answer on whether you're ready to outsource yet</li>
+        </ul>
+      </div>
+      <form id="auditForm" novalidate>
+        <div id="formFields">
+          <h3>Book your free audit</h3>
+          <div class="field"><label for="name">Your name</label><input id="name" name="name" type="text" autocomplete="name" required></div>
+          <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+          <div class="field"><label for="store">Shopify store URL</label><input id="store" name="store" type="url" placeholder="https://yourbrand.com"></div>
+          <div class="field"><label for="vol">Orders per day</label>
+            <select id="vol" name="vol">
+              <option>Under 10</option><option selected>10–50</option><option>50–150</option><option>150–300</option><option>300+</option>
+            </select>
+          </div>
+          <div class="field"><label for="msg">Anything we should know?</label><textarea id="msg" name="msg" placeholder="What are you shipping? What's the biggest headache right now?"></textarea></div>
+          <button class="btn orange" type="submit">Request my free audit</button>
+          <p class="form-note">We reply within one working day. No mailing lists, no hard sell.</p>
+        </div>
+        <div class="thanks" id="thanksBox">
+          <span class="stamp">Received</span>
+          <h3>Thanks — we're on it.</h3>
+          <p style="margin-top:10px;color:#2B2E33">We'll come back to you within one working day with next steps for your free fulfilment audit.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Packhouse — back to top"><svg class="logo-svg small"><use href="#pk-logo"/></svg></a>
+    <div class="fine">UK Shopify fulfilment · Same-day dispatch · hello@packhouse.example · © 2026 All Terrain Cycles Limited</div>
+  </div>
+</footer>
+
+<script>
+  // Demo-only form handling: swap in your real endpoint (Formspree, Shopify app, or your own backend).
+  document.getElementById('auditForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('name');
+    var email = document.getElementById('email');
+    if(!name.value.trim() || !email.value.trim() || !email.checkValidity()){
+      (!name.value.trim() ? name : email).focus();
+      return;
+    }
+    document.getElementById('formFields').style.display = 'none';
+    document.getElementById('thanksBox').style.display = 'block';
+  });
+</script>
+
+</body>
+</html>
